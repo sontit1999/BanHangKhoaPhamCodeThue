@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="textviewmotacafe" type="id" />
+    <item name="imageviewcafe" type="id" />
+    <item name="textviewgiacafe" type="id" />
+    <item name="textviewtencafe" type="id" />
+    <item name="toolbartrasua" type="id" />
+    <item name="listviewtrasua" type="id" />
+    <item name="map" type="id" />
+    <item name="textviewtrasua" type="id" />
+    <item name="textviewgiatrasua" type="id" />
+    <item name="textviewmotatrasua" type="id" />
+    <item name="imageviewtrasua" type="id" />
+    <item name="listviewcafe" type="id" />
+    <item name="toolbarcafe" type="id" />
+</resources>
