@@ -29,7 +29,7 @@
             android:weightSum="4"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="wrap_content">
             <TextView
                 android:layout_weight="1"
                 android:id="@+id/textviewtenchitietsanpham"
@@ -40,32 +40,31 @@
                 android:layout_margin="10dp"
                 android:textSize="20sp"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="wrap_content"/>
             <TextView
-                android:layout_weight="1"
                 android:id="@+id/textviewgiachitietsanpham"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="Gia san pham"
                 android:textColor="#f20"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="wrap_content"/>
             <EditText
-                android:layout_weight="1"
                 android:gravity="center"
                 android:hint="Số lượng"
                 android:layout_gravity="center"
+                android:padding="5dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/spinner"
                 android:textAlignment="center"
                 android:layout_marginTop="10dp"
                 android:id="@+id/edtSoluong"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content">
             </EditText>
             <Button
-                android:layout_weight="1"
                 android:id="@+id/buttondatmua"
                 android:textColor="#FFF"
                 android:textSize="15sp"
@@ -73,7 +72,7 @@
                 android:background="#FF5722"
                 android:text="Thêm vào giỏ hàng"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

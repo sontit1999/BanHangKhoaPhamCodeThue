@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:weightSum="10"
     android:orientation="horizontal">
     <LinearLayout
@@ -25,15 +25,19 @@
         android:layout_weight="7"
         android:layout_width="0dp"
         android:layout_height="wrap_content">
+
         <TextView
-            android:text="Tên món hàng"
-            android:textColor="#10100f"
             android:id="@+id/textviewtengiohang"
-            android:textSize="25sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_height="wrap_content"
+            android:text="Tên món hàng"
+            android:maxLength="30"
+            android:textColor="#10100f"
+            android:textSize="20sp" />
         <TextView
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:text="Giá món hàng"
             android:textSize="15sp"
             android:textColor="#f20"
