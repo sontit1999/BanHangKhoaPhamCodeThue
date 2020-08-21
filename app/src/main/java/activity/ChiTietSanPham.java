@@ -33,7 +33,7 @@ public class ChiTietSanPham extends AppCompatActivity {
         if(intent!=null && intent.getSerializableExtra("sanpham")!=null){
 
             sanpham = (Sanpham) intent.getSerializableExtra("sanpham");
-            Toast.makeText(this, "Mo ta: " + sanpham.getMotasanpham(), Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(this, "Mo ta: " + sanpham.getMotasanpham(), Toast.LENGTH_SHORT).show();
 
         }
         if(sanpham!=null){

@@ -18,6 +18,7 @@
                 android:id="@+id/toolbarmanhinhchinh"
                 android:background="#406DF4"
                 app:title="Trang Chủ "
+                app:titleTextColor="#FFF"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
             </androidx.appcompat.widget.Toolbar>
@@ -34,7 +35,7 @@
                 <TextView
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#F82404"
+                    android:textColor="#050505"
                     android:layout_margin="5dp"
                     android:text="Sản phẩm mới nhất"
                     android:layout_width="wrap_content"

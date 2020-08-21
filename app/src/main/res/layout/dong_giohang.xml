@@ -48,10 +48,12 @@
             <Button
                 android:focusable="false"
                 android:text="-"
+                android:background="#B6B6B6"
+                android:textColor="#FFF"
                 android:id="@+id/buttonminus"
                 android:layout_marginTop="5dp"
                 android:textSize="30sp"
-                android:layout_width="50dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"/>
             <Button
                 android:background="@null"
@@ -66,9 +68,11 @@
                 android:focusable="false"
                 android:text="+"
                 android:id="@+id/buttonplus"
+                android:background="#B6B6B6"
+                android:textColor="#FFF"
                 android:layout_marginTop="5dp"
                 android:textSize="30sp"
-                android:layout_width="50dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>

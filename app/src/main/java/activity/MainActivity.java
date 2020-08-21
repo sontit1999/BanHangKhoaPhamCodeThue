@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity  {
         lspAdapter.setCallback(new MenuCallback() {
             @Override
             public void onItemClick(Loaisp loaisp) {
-                Toast.makeText(MainActivity.this, "Chọn " + loaisp.Tenloaisp, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Chọn " + loaisp.Tenloaisp, Toast.LENGTH_SHORT).show();
                 switch (loaisp.getId()){
                     case 0:
                         if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
