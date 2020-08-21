@@ -40,14 +40,14 @@ import java.util.ArrayList;
 
 import adapter.LoaispAdapter;
 import adapter.SanphamAdapter;
-import callback.Giohangcallback;
+import callback.MenuCallback;
 import model.Giohang;
 import model.Loaisp;
 import model.Sanpham;
 import ultil.CheckConnection;
 import ultil.Server;
 
-public class MainActivity extends AppCompatActivity implements Giohangcallback {
+public class MainActivity extends AppCompatActivity  {
     Toolbar toolbar;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewmanhinhchinh;
@@ -65,6 +65,15 @@ public class MainActivity extends AppCompatActivity implements Giohangcallback {
     SanphamAdapter sanphamAdapter;
 
     public static ArrayList<Giohang> manggiohang;
+
+    public static double getTongTienGiohang(){
+        double tongtien = 0;
+        for(int i=0;i<manggiohang.size();i++){
+
+            tongtien += (manggiohang.get(i).giasp * manggiohang.get(i).getSoluongsp());
+        }
+        return tongtien;
+    }
 
 
     public static void addGioHang(Giohang giohang){
@@ -122,23 +131,10 @@ public class MainActivity extends AppCompatActivity implements Giohangcallback {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 1:
-                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, TraSuaActivity.class);
-                            intent.putExtra("idloaisanpham", mangloaisp.get(position).getId());
-                            startActivity(intent);
-                        } else {
-                            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiểm tra lại kết nối");
-                        }
-                        drawerLayout.closeDrawer(GravityCompat.START);
+
                         break;
                     case 2:
-                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
-                            Intent intent = new Intent(MainActivity.this, CafeActivity.class);
-                            intent.putExtra("idloaisanpham", mangloaisp.get(position).getId());
-                            startActivity(intent);
-                        } else {
-                            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiểm tra lại kết nối");
-                        }
+
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case 3:
@@ -291,6 +287,55 @@ public class MainActivity extends AppCompatActivity implements Giohangcallback {
         rvLoaisp.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
         rvLoaisp.setAdapter(lspAdapter);
 
+        // set callback
+
+        lspAdapter.setCallback(new MenuCallback() {
+            @Override
+            public void onItemClick(Loaisp loaisp) {
+                Toast.makeText(MainActivity.this, "Chọn " + loaisp.Tenloaisp, Toast.LENGTH_SHORT).show();
+                switch (loaisp.getId()){
+                    case 0:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                     break;
+                    case 1:
+
+                    case 2:
+                        Intent intent = new Intent(MainActivity.this, DSSPActivity.class);
+                        intent.putExtra("id",loaisp.getId());
+                        startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+                    case 3:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent1 = new Intent(MainActivity.this, LienHeActivity.class);
+                            startActivity(intent1);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+                    case 4:
+                        if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                            Intent intent2 = new Intent(MainActivity.this, ThongtinActivity.class);
+                            startActivity(intent2);
+                        } else {
+                            CheckConnection.ShowToast_Short(getApplicationContext(), "Kiểm tra lại kết nối");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+                }
+            }
+        });
+
 
 
         drawerLayout = findViewById(R.id.drawerlayout);
@@ -309,12 +354,8 @@ public class MainActivity extends AppCompatActivity implements Giohangcallback {
             manggiohang = new ArrayList<>();
             // add mảng giỏ hàng
 
-            manggiohang.add(new Giohang(1, "chè", 2000, "https://daynauan.info.vn/wp-content/uploads/2018/08/che-thai-sau-rieng.jpg", 20));
+            // manggiohang.add(new Giohang(1, "chè", 2000, "https://daynauan.info.vn/wp-content/uploads/2018/08/che-thai-sau-rieng.jpg", 20));
         }
     }
 
-    @Override
-    public void onThemSanPhamToGioHang(Giohang giohang) {
-        manggiohang.add(giohang);
-    }
 }

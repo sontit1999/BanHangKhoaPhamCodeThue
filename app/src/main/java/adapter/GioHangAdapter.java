@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doantrasua.R;
 import com.squareup.picasso.Picasso;
@@ -75,6 +76,7 @@ public class GioHangAdapter extends BaseAdapter {
                 .error(R.drawable.cancel)
                 .into(viewHolder.imggiohang);
         viewHolder.btnvalue.setText(giohang.getSoluongsp() + "");
+        /*
         int sl = Integer.parseInt(viewHolder.btnvalue.getText().toString());
         if(sl >= 10){
             viewHolder.btnplus.setVisibility(View.INVISIBLE);
@@ -85,10 +87,17 @@ public class GioHangAdapter extends BaseAdapter {
             viewHolder.btnminus.setVisibility(View.VISIBLE);
             viewHolder.btnplus.setVisibility(View.VISIBLE);
         }
+
+         */
         final ViewHolder finalViewHolder = viewHolder;
         viewHolder.btnplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.manggiohang.get(position).soluongsp = MainActivity.manggiohang.get(position).soluongsp + 1 ;
+                activity.Giohang.Tinhtongtien();
+                int slhientai = Integer.parseInt(finalViewHolder.btnvalue.getText().toString());
+                finalViewHolder.btnvalue.setText((slhientai + 1)+"");
+                /*
                 int solmoinhat = Integer.parseInt(finalViewHolder.btnvalue.getText().toString())+1;
                 int slht = MainActivity.manggiohang.get(position).getSoluongsp();
                 long giaht = MainActivity.manggiohang.get(position).getGiasp();
@@ -107,11 +116,22 @@ public class GioHangAdapter extends BaseAdapter {
                     finalViewHolder.btnplus.setVisibility(View.VISIBLE);
                     finalViewHolder.btnvalue.setText(String.valueOf(solmoinhat));
                 }
+                */
             }
         });
         viewHolder.btnminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.manggiohang.get(position).soluongsp = MainActivity.manggiohang.get(position).soluongsp - 1 ;
+                int slhientai = Integer.parseInt(finalViewHolder.btnvalue.getText().toString());
+                   if(slhientai>1){
+                       finalViewHolder.btnvalue.setText((slhientai- 1) + "");
+                       activity.Giohang.Tinhtongtien();
+                   }else{
+                       Toast.makeText(context, "Phải mua ít nhất 1 sản phẩm. Nếu không mua vui lòng giữ vào sản phẩm để xóa ^^", Toast.LENGTH_SHORT).show();
+                   }
+
+                 /*
                 int solmoinhat = Integer.parseInt(finalViewHolder.btnvalue.getText().toString())-1;
                 int slht = MainActivity.manggiohang.get(position).getSoluongsp();
                 long giaht = MainActivity.manggiohang.get(position).getGiasp();
@@ -130,6 +150,7 @@ public class GioHangAdapter extends BaseAdapter {
                     finalViewHolder.btnplus.setVisibility(View.VISIBLE);
                     finalViewHolder.btnvalue.setText(String.valueOf(solmoinhat));
                 }
+                */
             }
         });
         return convertView;

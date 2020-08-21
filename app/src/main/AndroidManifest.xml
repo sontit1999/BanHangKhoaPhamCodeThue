@@ -14,7 +14,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="activity.MainActivity"
+        <activity android:name="activity.DSSPActivity"></activity>
+        <activity
+            android:name="activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,12 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="activity.Giohang"/>
-        <activity android:name="activity.CafeActivity"/>
-        <activity android:name="activity.LienHeActivity"/>
-        <activity android:name="activity.ChiTietSanPham"/>
-        <activity android:name="activity.ThongTinKhachHang"/>
-        <activity android:name="activity.TraSuaActivity"/>
+        <activity android:name="activity.Giohang" />
+        <activity android:name="activity.CafeActivity" />
+        <activity android:name="activity.LienHeActivity" />
+        <activity android:name="activity.ChiTietSanPham" />
+        <activity android:name="activity.ThongTinKhachHang" />
+        <activity android:name="activity.TraSuaActivity" />
+        <activity android:name="activity.ThongtinActivity" />
+
     </application>
 
 </manifest>

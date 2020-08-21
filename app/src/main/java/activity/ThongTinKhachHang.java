@@ -60,7 +60,7 @@ public class ThongTinKhachHang extends AppCompatActivity {
                 final String email = edtemail.getText().toString().trim();
                 if (ten.length() > 0 && sdt.length() > 0 && email.length() > 0) {
                     final RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.Duongdanloaisp
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.Duongdangetthongtinkhachhang
                             , new Response.Listener<String>() {
                         @Override
                         public void onResponse(final String madonhang) {

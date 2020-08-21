@@ -38,16 +38,20 @@ public class Giohang extends AppCompatActivity {
        // ActionToolbar();
         CheckData();  //phai con hang thi moi do du lieu ra neu khong se hien thong bao
         EventUltil();
+        Tinhtongtien();
         CatchOnItemListView();
         EventButton();
+    }
+
+    public static void Tinhtongtien() {
+        txttongtien.setText(MainActivity.getTongTienGiohang() + " VND");
     }
 
     private void EventButton() {
         btntieptucmua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
+               finish();
             }
         });
         btnthanhtoan.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +113,8 @@ public class Giohang extends AppCompatActivity {
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         txttongtien.setText(decimalFormat.format(tongtien) + " vnd");
+
+
     }
 
     private void CheckData() {

@@ -15,11 +15,18 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import callback.MenuCallback;
 import model.Loaisp;
 
 public class LoaiSPAdapter extends RecyclerView.Adapter<LoaiSPAdapter.MyviewHodel> {
     Context context;
     ArrayList<Loaisp> list = new ArrayList<>();
+
+    public void setCallback(MenuCallback callback) {
+        this.callback = callback;
+    }
+
+    MenuCallback callback;
 
     public LoaiSPAdapter() {
     }
@@ -35,8 +42,16 @@ public class LoaiSPAdapter extends RecyclerView.Adapter<LoaiSPAdapter.MyviewHode
 
     @Override
     public void onBindViewHolder(@NonNull MyviewHodel holder, int position) {
-        Loaisp loaisp = list.get(position);
+        final Loaisp loaisp = list.get(position);
         holder.binData(loaisp);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(callback!=null){
+                    callback.onItemClick(loaisp);
+                }
+            }
+        });
     }
 
     public LoaiSPAdapter(Context context) {

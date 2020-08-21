@@ -16,8 +16,15 @@
         android:layout_height="?attr/actionBarSize">
 
     </androidx.appcompat.widget.Toolbar>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSanpham"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
     <ListView
         android:id="@+id/listviewlaptop"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

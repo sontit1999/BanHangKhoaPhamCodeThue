@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,6 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import adapter.CafeAdapter;
+import adapter.SanphamAdapter;
 import model.Sanpham;
 import ultil.CheckConnection;
 import ultil.Server;
@@ -45,7 +48,7 @@ public class CafeActivity extends AppCompatActivity {
     ArrayList<Sanpham> mangcafe;
     int idcafe = 0;
     int page = 1;
-
+    RecyclerView rvSanPham;
     View footerView;
     boolean isLoading = false;
     mHandler mHandler;
@@ -55,6 +58,7 @@ public class CafeActivity extends AppCompatActivity {
     private int Giacafe;
     private String Hinhanhcafe;
     private String Motacafe;
+    SanphamAdapter spAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +69,9 @@ public class CafeActivity extends AppCompatActivity {
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             anhxa();
             GetIdloaisanpham();
-            ActionToolbar();
+          //  ActionToolbar();
             GetData(page);
-            LoadMoreData();
+          //  LoadMoreData();
         }else {
             CheckConnection.ShowToast_Short(getApplicationContext(),"Kiểm tra lại kết nối");
             finish();
@@ -91,18 +95,21 @@ public class CafeActivity extends AppCompatActivity {
     }
 
     private void anhxa() {
+        rvSanPham = (RecyclerView)  findViewById(R.id.rvSanpham);
         toolbarcafe = findViewById(R.id.toolbarcafe);
         lvcafe = findViewById(R.id.listviewcafe);
         mangcafe = new ArrayList<>();
         cafeAdapter = new CafeAdapter(getApplicationContext(),mangcafe);
-        lvcafe.setAdapter(cafeAdapter);
+        spAdapter = new SanphamAdapter(getApplicationContext(), mangcafe);
+       // lvcafe.setAdapter(cafeAdapter);
+        rvSanPham.setAdapter(spAdapter);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         footerView = inflater.inflate(R.layout.progressbar,null);
         mHandler = new mHandler();
     }
 
     private void GetIdloaisanpham() {
-        int idcafe = getIntent().getIntExtra("idloaisanpham", -1);
+         idcafe = getIntent().getIntExtra("idloaisanpham", -1);
     }
 
     private void ActionToolbar() {
@@ -118,7 +125,7 @@ public class CafeActivity extends AppCompatActivity {
 
     private void GetData(int Page) {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        String duongdan = Server.Duongdantrasua+String.valueOf(Page);
+        String duongdan = Server.Duongdangetsanpham+String.valueOf(Page);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, duongdan,
                 new Response.Listener<String>() {
                     @Override
@@ -141,9 +148,12 @@ public class CafeActivity extends AppCompatActivity {
                                     Hinhanhcafe = jsonObject.getString("hinhanhsp");
                                     Motacafe = jsonObject.getString("motasp");
                                     Idspcafe = jsonObject.getInt("idsanpham");
+                                    Log.d("sontit",Tencafe);
                                     mangcafe.add(new Sanpham(id,Tencafe,Giacafe,Hinhanhcafe,Motacafe,Idspcafe));
+
                                     cafeAdapter.notifyDataSetChanged();
                                 }
+                                spAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
